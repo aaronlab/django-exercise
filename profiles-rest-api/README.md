@@ -131,9 +131,10 @@ python manage.py createsupseruser
 in the file `admin.py`
 
 ```python
-from <PACKAGE> import <MODELS>
+from < PACKAGE >
+import < MODELS >
 
-admin.site.register(<MODEL_CLASS>)
+admin.site.register( < MODEL_CLASS >)
 ```
 
 ## Test Django Admin
@@ -141,5 +142,25 @@ admin.site.register(<MODEL_CLASS>)
 ```commandline
 python manage.py runserver 0.0.0.0:8000
 ```
+
 - [http://localhost:8000/admin](http://localhost:8000/admin)
 
+## Create API View
+
+in the file `views.py`
+
+```python
+from rest_framework.views import APIView
+from rest_framework.response import Response
+```
+
+## Configure view URL
+
+in the file `urls.py`
+
+## Infinite reload error
+
+```commandline
+python manage.py dbshell
+python manage.py runserver 0.0.0.0:8000 --noreload
+```
