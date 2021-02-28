@@ -119,3 +119,9 @@ source ~/env/bin/activate
 python manage.py makemigrations <APP NAME>
 python manage.py migrate
 ```
+
+## Create super user
+
+```commandline
+python manage.py createsupseruser
+```
