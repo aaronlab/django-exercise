@@ -84,3 +84,20 @@ python manage.py startapp <API NAME>
     - 'rest_framework'
     - 'rest_framework.authtoken'
     - also sub applications too
+
+## Start Server
+
+> should be same with the port in Vagrant
+
+```commandline
+python manage.py runserver <IP:PORT>
+
+# ex: python manage.py runserver 0.0.0.0:8000
+# localhost:8000
+```
+
+## Stop Server
+
+```commandline
+ctrl c
+```
