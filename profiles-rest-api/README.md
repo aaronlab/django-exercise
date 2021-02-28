@@ -18,5 +18,5 @@ vagrant Up
 
 ```commandline
 vagrant ssh
-exit
+cd /vagrant
 ```
