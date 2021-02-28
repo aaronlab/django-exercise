@@ -75,3 +75,12 @@ django-admin.py startproject <Project Name> <Location>
 ```commandline
 python manage.py startapp <API NAME>
 ```
+
+## Setting Files
+
+> settings.py
+
+- Rest Framework: `INSTALLED_APPS`
+    - 'rest_framework'
+    - 'rest_framework.authtoken'
+    - also sub applications too
