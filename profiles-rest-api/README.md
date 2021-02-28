@@ -108,7 +108,7 @@ ctrl c
 
 - Manager: BaseUserManager
 
-- settings.py: ```MODEL_NAME = '<DIR>.<MODEL_CLASS_NAME>'```
+- settings.py: `MODEL_NAME = '<DIR>.<MODEL_CLASS_NAME>'`
 
 ## Create migrations and sync DB
 
@@ -124,4 +124,14 @@ python manage.py migrate
 
 ```commandline
 python manage.py createsupseruser
+```
+
+## Enable Django Admin
+
+in the file `admin.py`
+
+```python
+from <PACKAGE> import <MODELS>
+
+admin.site.register(<MODEL_CLASS>)
 ```
