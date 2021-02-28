@@ -135,3 +135,11 @@ from <PACKAGE> import <MODELS>
 
 admin.site.register(<MODEL_CLASS>)
 ```
+
+## Test Django Admin
+
+```commandline
+python manage.py runserver 0.0.0.0:8000
+```
+- [http://localhost:8000/admin](http://localhost:8000/admin)
+
