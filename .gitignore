@@ -1,5 +1,5 @@
-.idea
-.vagrant
-*.log
-*.box
-settings.py
+# .idea
+# .vagrant
+# *.log
+# *.box
+# settings.py
