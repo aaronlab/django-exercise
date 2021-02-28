@@ -11,7 +11,13 @@ vagrant init ubuntu/bionic64
 - Up
 
 ```commandline
-vagrant Up
+vagrant up
+```
+
+- Down
+
+```commandline
+vagrant halt
 ```
 
 - SSH
@@ -54,4 +60,12 @@ djangorestframework==3.9.2
 
 ```commandline
 pip install -r requirements.txt
+```
+
+## Django
+
+- Init project
+
+```commandline
+django-admin.py startproject <Project Name> <Location>
 ```
