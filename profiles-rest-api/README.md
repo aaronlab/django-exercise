@@ -152,11 +152,50 @@ in the file `views.py`
 ```python
 from rest_framework.views import APIView
 from rest_framework.response import Response
+
+
+# then create a class and get method
+# e.g.
+
+class HelloApiView(APIView):
+    """Test API View"""
+
+    def get(self, request, format=None):
+        """Returns a list of APIView features"""
+        an_api_view = [
+            'Uses HTTP methods as function (get, post, patch, put, delete)',
+            'Is similar to a traditional Django View',
+            'Gives you the most control over you application logic',
+            'Is mapped manually to URLs',
+        ]
+
+        return Response({'message': 'Hello!', 'api_view': an_api_view})
 ```
 
 ## Configure view URL
 
 in the file `urls.py`
+
+```python
+from django.urls import path, include
+
+urlpatterns = [
+    path('<PATH>/', include('<PACKAGE_NAME>.urls'))
+]
+```
+
+in the file `urls.py` in the `package`
+
+```python
+from django.urls import path
+
+from profiles_api import views
+
+urlpatterns = [
+    path('<PATH>/', views. < API_CLASS(APIView) >.as_view())
+]
+
+```
 
 ## Infinite reload error
 
