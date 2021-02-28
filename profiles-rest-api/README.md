@@ -101,3 +101,21 @@ python manage.py runserver <IP:PORT>
 ```commandline
 ctrl c
 ```
+
+## Model
+
+- Model: AbstractBaseUser, PermissionsMixin
+
+- Manager: BaseUserManager
+
+- settings.py: ```MODEL_NAME = '<DIR>.<MODEL_CLASS_NAME>'```
+
+## Create migrations and sync DB
+
+```commandline
+vagrant ssh
+cd /vagrant
+source ~/env/bin/activate
+python manage.py makemigrations <APP NAME>
+python manage.py migrate
+```
