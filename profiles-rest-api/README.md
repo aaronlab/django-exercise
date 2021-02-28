@@ -70,7 +70,7 @@ pip install -r requirements.txt
 django-admin.py startproject <Project Name> <Location>
 ```
 
-- Start Project
+- Sub Application
 
 ```commandline
 python manage.py startapp <API NAME>
