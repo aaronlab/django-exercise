@@ -219,7 +219,7 @@ from rest_framework import serializers
 - Import serializer and declare one in the `class`
 
 - Now, can use it in a method like below
-  
+
 ```python
 # Serializer
 
@@ -229,6 +229,7 @@ from rest_framework import serializers
 class HelloSerializer(serializers.Serializer):
     """Serializes a name field for testing our APIView"""
     name = serializers.CharField(max_length=10)
+
 
 # Api    
 
@@ -243,7 +244,8 @@ class HelloApiView(APIView):
     serializer_class = serializers.HelloSerializer
 
     def post(self, request):
-    """Create a hello message with our name"""
+
+        """Create a hello message with our name"""
     serializers = self.serializer_class(data=request.data)
 
     if serializers.is_valid():
@@ -309,10 +311,11 @@ from django.urls import path, include
 
 from rest_framework.routers import DefaultRouter
 
-from <PACKAGE_NAME> import views
+from < PACKAGE_NAME >
+import views
 
 router = DefaultRouter()
-router.register('<NAME_OF_URL>', views.<CLASS(viewsets.ViewSet)>, base_name='<RETRIEVE_URL>')
+router.register('<NAME_OF_URL>', views. < CLASS(viewsets.ViewSet) >, base_name='<RETRIEVE_URL>')
 
 urlpatterns = [
     path('', include(router.urls))
@@ -325,13 +328,13 @@ urlpatterns = [
 
 - Methods
 
-  - list: `GET` all items list
-  - create: `POST` create
-  - retrieve: `GET` by its primary key(`pk`)
-  - update: `UPDATE` by its primary key(`pk`)
-  - partial_update: `PATCH` by its primary key(`pk`)
-  - destroy: `DELETE` by its primary key(`pk`)
-  
+    - list: `GET` all items list
+    - create: `POST` create
+    - retrieve: `GET` by its primary key(`pk`)
+    - update: `UPDATE` by its primary key(`pk`)
+    - partial_update: `PATCH` by its primary key(`pk`)
+    - destroy: `DELETE` by its primary key(`pk`)
+
 ## Create User Profile serializer
 
 ```python
@@ -349,9 +352,9 @@ from rest_framework import serializers
 ```python
 extra_kwargs = {
     'password': {
-      # Password shouldn't be shown to people.
-      'write_only': True,
-      'style': {'input_type': 'password'}
+        # Password shouldn't be shown to people.
+        'write_only': True,
+        'style': {'input_type': 'password'}
     }
 }
 ```
@@ -363,7 +366,7 @@ extra_kwargs = {
 - Add serializer + queryset
 
 - e.g.
-  
+
   ```python
   from rest_framework import viewsets
   
@@ -375,7 +378,7 @@ extra_kwargs = {
     serializer_class = serializers.UserProfileSerializer
     queryset = models.UserProfile.objects.all()
   ```
-  
+
 - Register the router, but don't have to add `base_name` because of `declaring the queryset`
 
 - You have to add `base_name` when the `viewset` doesn't have a `query_set` or you want to `override of the queryset`.
@@ -406,16 +409,46 @@ in `views.py`
 
 - e.g.
 
-```python
-from rest_framework.authentication import TokenAuthentication
+  ```python
+  from rest_framework.authentication import TokenAuthentication
+  
+  from <PACKAGE_NAME> import <PERMISSION_FILE>
+  
+  
+  class UserProfileViewSet(viewsets.ModelViewSet):
+      """Handle creating and updating profiles"""
+      serializer_class = serializers.UserProfileSerializer
+      queryset = models.UserProfile.objects.all()
+      authentication_classes = (TokenAuthentication,)
+      permission_classes = (<PERMISSION_CLASS>,)
+  ```
 
-from <PACKAGE_NAME> import <PERMISSION_FILE>
+## Search features
 
+in `views.py`
 
-class UserProfileViewSet(viewsets.ModelViewSet):
-    """Handle creating and updating profiles"""
-    serializer_class = serializers.UserProfileSerializer
-    queryset = models.UserProfile.objects.all()
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (<PERMISSION_CLASS>,)
-```
+- import filters
+
+- Add `filter_backends`, `search_fields` variables into the `model viewset class`
+
+- e.g.
+
+  ```python
+  from rest_framework import filters
+  
+  
+  class UserProfileViewSet(viewsets.ModelViewSet):
+      """Handle creating and updating profiles"""
+      serializer_class = serializers.UserProfileSerializer
+      queryset = models.UserProfile.objects.all()
+      authentication_classes = (TokenAuthentication,)
+      permission_classes = (permissions.UpdateOwnProfile,)
+      
+      # HERE
+      filter_backends = (filters.SearchFilter,)
+      
+      # This is for search fields, so that you can search users by name / email
+      search_fields = ('name', 'email',)
+  ```
+
+- You can search users where the name or email contain `aaron` like this: `http://localhost:8000/api/profile/?search=aaron`
