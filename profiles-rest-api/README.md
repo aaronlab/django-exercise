@@ -331,3 +331,27 @@ urlpatterns = [
   - update: `UPDATE` by its primary key(`pk`)
   - partial_update: `PATCH` by its primary key(`pk`)
   - destroy: `DELETE` by its primary key(`pk`)
+  
+## Create User Profile serializer
+
+```python
+from rest_framework import serializers
+```
+
+- Create a `serializer class` inheriting `serializers.ModelSerializer`
+
+- Create another `Meta class` for the `serializer class`.
+
+- `Meta` class should have `model`, and `fields` variables.
+
+- If the fields should be `write_only`, add `extra_kwargs` like below.
+
+```python
+extra_kwargs = {
+    'password': {
+      # Password shouldn't be shown to people.
+      'write_only': True,
+      'style': {'input_type': 'password'}
+    }
+}
+```
