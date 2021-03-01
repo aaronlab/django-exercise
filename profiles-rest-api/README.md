@@ -318,3 +318,16 @@ urlpatterns = [
     path('', include(router.urls))
 ]
 ```
+
+## How to use viewset
+
+> in `views.py` import `viewsets` and inherit
+
+- Methods
+
+  - list: `GET` all items list
+  - create: `POST` create
+  - retrieve: `GET` by its primary key(`pk`)
+  - update: `UPDATE` by its primary key(`pk`)
+  - partial_update: `PATCH` by its primary key(`pk`)
+  - destroy: `DELETE` by its primary key(`pk`)
