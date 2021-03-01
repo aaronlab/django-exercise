@@ -393,3 +393,29 @@ from rest_framework import permissions
 - You can also override `.has_permission(self, request, view)` method.
 
 - After check the permission by `.has_permission`, if it's right, `.has_object_permission` will be run.
+
+## Add authentication and permission to viewset
+
+in `views.py`
+
+- import `TokenAuthentication`
+
+- import `permission class`
+
+- add `authentication_classes`, `permission_classes` parameter into the `model viewset class`
+
+- e.g.
+
+```python
+from rest_framework.authentication import TokenAuthentication
+
+from <PACKAGE_NAME> import <PERMISSION_FILE>
+
+
+class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (<PERMISSION_CLASS>,)
+```
