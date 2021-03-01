@@ -203,3 +203,35 @@ urlpatterns = [
 python manage.py dbshell
 python manage.py runserver 0.0.0.0:8000 --noreload
 ```
+
+## Serialize
+
+> You can easily understand like this is a kinda form  for data.
+
+```commandline
+from rest_framework import serializers
+```
+
+- Inherit `serializers.Serializer` for a  `class`
+
+- And then add `parameters` that you should take from the `post` request.
+
+- Import serializer and declare one in the `class`
+
+- Now, can use it in a method like below
+  ```python
+  def post(self, request):
+      """Create a hello message with our name"""
+      serializers = self.serializer_class(data=request.data)
+
+      if serializers.is_valid():
+          name = serializers.validated_data.get('name')
+          message = f'Hello, {name}.'
+          return Response({'message': message})
+
+      else:
+          return Response(
+              serializers.errors,
+              status=status.HTTP_400_BAD_REQUEST
+          )
+  ```
