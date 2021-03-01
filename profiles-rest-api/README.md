@@ -257,3 +257,15 @@ class HelloApiView(APIView):
             status=status.HTTP_400_BAD_REQUEST
         )
 ```
+
+## Put / Patch / Delete
+
+> `pk` for the argument of the method means the primary key
+
+- You will use `patch` to handle a `partial update` of an object.
+
+- Or you will use `put` to handle a `whole object`. This means that the original object will be replaced.
+
+- You will use `delete` to delete an object.
+
+- To test `patch`, you should use `raw data`, because you need to update particular fields.  
