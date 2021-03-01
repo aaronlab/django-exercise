@@ -300,3 +300,21 @@ class HelloViewSet(viewsets.ViewSet):
         return Response({'message': 'Hello!', 'a_viewset': a_viewset})
 ```
 
+## Add URL Router
+
+- in `urls.py` of the package
+
+```python
+from django.urls import path, include
+
+from rest_framework.routers import DefaultRouter
+
+from <PACKAGE_NAME> import views
+
+router = DefaultRouter()
+router.register('<NAME_OF_URL>', views.<CLASS(viewsets.ViewSet)>, base_name='<RETRIEVE_URL>')
+
+urlpatterns = [
+    path('', include(router.urls))
+]
+```
