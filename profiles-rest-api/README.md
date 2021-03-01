@@ -208,7 +208,7 @@ python manage.py runserver 0.0.0.0:8000 --noreload
 
 > You can easily understand like this is a kinda form  for data.
 
-```commandline
+```python
 from rest_framework import serializers
 ```
 
@@ -219,19 +219,41 @@ from rest_framework import serializers
 - Import serializer and declare one in the `class`
 
 - Now, can use it in a method like below
-  ```python
-  def post(self, request):
-      """Create a hello message with our name"""
-      serializers = self.serializer_class(data=request.data)
+  
+```python
+# Serializer
 
-      if serializers.is_valid():
-          name = serializers.validated_data.get('name')
-          message = f'Hello, {name}.'
-          return Response({'message': message})
+from rest_framework import serializers
 
-      else:
-          return Response(
-              serializers.errors,
-              status=status.HTTP_400_BAD_REQUEST
-          )
-  ```
+
+class HelloSerializer(serializers.Serializer):
+    """Serializes a name field for testing our APIView"""
+    name = serializers.CharField(max_length=10)
+
+# Api    
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+
+from profiles_api import serializers
+
+
+class HelloApiView(APIView):
+    serializer_class = serializers.HelloSerializer
+
+    def post(self, request):
+    """Create a hello message with our name"""
+    serializers = self.serializer_class(data=request.data)
+
+    if serializers.is_valid():
+        name = serializers.validated_data.get('name')
+        message = f'Hello, {name}.'
+        return Response({'message': message})
+
+    else:
+        return Response(
+            serializers.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
+```
