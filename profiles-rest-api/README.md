@@ -452,3 +452,50 @@ in `views.py`
   ```
 
 - You can search users where the name or email contain `aaron` like this: `http://localhost:8000/api/profile/?search=aaron`
+
+## Create Login API
+
+in `views.py` of the module
+
+- import
+
+  ```python
+  from rest_framework.authtoken.views import ObtainAuthToken
+  from rest_framework.settings import api_settings
+  ```
+  
+- Make api view class, inheriting `ObtainAuthToken`
+
+- Add `renderer_classes` from `settings`
+
+- e.g.
+
+  ```python
+  from rest_framework.authtoken.views import ObtainAuthToken
+  from rest_framework.settings import api_settings
+  
+  class UserLoginApiView(ObtainAuthToken):
+      """Handle creating user authentication tokens"""
+      renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+  ```
+  
+in `urls.py` of the module
+
+- add the `path` into the `urlpatterns` as view.
+
+- e.g.
+
+```python
+from django.urls import path
+
+from profiles_api import views
+
+urlpatterns = [
+    path('login/', views.UserLoginApiView.as_view())
+]
+```
+
+- How to test:
+
+  - By using ModHeader extension
+  - Set the header with the `key: Authorization`, `value: Token <AUTH_TOKEN>`
