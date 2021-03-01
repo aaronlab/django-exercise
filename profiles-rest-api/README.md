@@ -355,3 +355,28 @@ extra_kwargs = {
     }
 }
 ```
+
+## Create viewset + Register with the url Router
+
+- Create a viewset inheriting `viewsets.ModelViewSet`
+
+- Add serializer + queryset
+
+- e.g.
+  
+  ```python
+  from rest_framework import viewsets
+  
+  from profiles_api import serializers
+  from profiles_api import models
+  
+  class UserProfileViewSet(viewsets.ModelViewSet):
+    """Handle creating and updating profiles"""
+    serializer_class = serializers.UserProfileSerializer
+    queryset = models.UserProfile.objects.all()
+  ```
+  
+- Register the router, but don't have to add `base_name` because of `declaring the queryset`
+
+- You have to add `base_name` when the `viewset` doesn't have a `query_set` or you want to `override of the queryset`.
+
