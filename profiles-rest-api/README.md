@@ -380,3 +380,16 @@ extra_kwargs = {
 
 - You have to add `base_name` when the `viewset` doesn't have a `query_set` or you want to `override of the queryset`.
 
+## Custom Permission class
+
+```python
+from rest_framework import permissions
+```
+
+- Create a class inheriting `permissions.BasePermission`
+
+- Override a method called `has_object_permission(self, request, view, obj)`
+
+- You can also override `.has_permission(self, request, view)` method.
+
+- After check the permission by `.has_permission`, if it's right, `.has_object_permission` will be run.
