@@ -268,4 +268,35 @@ class HelloApiView(APIView):
 
 - You will use `delete` to delete an object.
 
-- To test `patch`, you should use `raw data`, because you need to update particular fields.  
+- To test `patch`, you should use `raw data`, because you need to update particular fields.
+
+## Viewset
+
+> Framework that takes care of a lot of typical logic
+
+- Fastest way to make a database interface
+
+- Simple CRUD interface to the database / Quick & Simple API
+
+## Create simple viewset Example
+
+```python
+from rest_framework.response import Response
+from rest_framework import viewsets
+
+
+class HelloViewSet(viewsets.ViewSet):
+    """Test API ViewSet"""
+
+    def list(self, request):
+        """Return a hello message"""
+
+        a_viewset = [
+            'Uses actions (list, create, retrieve, update, partial_update)',
+            'Automatically maps to URLs using Routers',
+            'Provides more functionality with less code'
+        ]
+
+        return Response({'message': 'Hello!', 'a_viewset': a_viewset})
+```
+
