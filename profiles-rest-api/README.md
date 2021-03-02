@@ -499,3 +499,18 @@ urlpatterns = [
 
   - By using ModHeader extension
   - Set the header with the `key: Authorization`, `value: Token <AUTH_TOKEN>`
+  
+## Add new model Item
+
+```python
+from django.db import models
+```
+
+- Make `ManyToOne` with `ForeignKey`
+
+  ```python
+  model.ForeignKey(
+    'ModelClassName',
+    on_delete=models.CASCADE
+  )
+  ```
