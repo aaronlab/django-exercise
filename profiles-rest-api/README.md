@@ -517,9 +517,19 @@ from django.db import models
   
 ## Create and run model migration
 
-in Terminal
+in `Terminal`
 
 ```commandline
 python manage.py makemigrations
 python manage.py migrate
+```
+
+## Add profile feed model to admin
+
+in `admin.py` of the module
+
+- Register the model
+
+```python
+admin.site.register(models.ProfileFeedItem)
 ```
