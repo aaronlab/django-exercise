@@ -514,3 +514,12 @@ from django.db import models
     on_delete=models.CASCADE
   )
   ```
+  
+## Create and run model migration
+
+in Terminal
+
+```commandline
+python manage.py makemigrations
+python manage.py migrate
+```
