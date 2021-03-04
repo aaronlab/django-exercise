@@ -45,3 +45,7 @@ docker-compose run app sh -c "python manage.py startapp core"
 no needs to have test.py + views.py in core app
 
 add 'core' app in `INSTALLED_APPS` of the setting file
+
+## User Model
+
+**extra_fields: any args
