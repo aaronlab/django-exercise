@@ -33,7 +33,7 @@ from django.test import TestCase
 - Inherit TestCase
 
 ```commandline
-docker-compose run app sh -c "python manage.py <TEST_FILE_NAME>"
+docker-compose run app sh -c "python manage.py test"
 ```
 
 ## Create Core App
@@ -43,3 +43,5 @@ docker-compose run app sh -c "python manage.py startapp core"
 ```
 
 no needs to have test.py + views.py in core app
+
+add 'core' app in `INSTALLED_APPS` of the setting file
