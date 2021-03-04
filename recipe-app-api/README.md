@@ -19,6 +19,5 @@ docker-compose build
 ## Create Django project
 
 ```commandline
-docker-compose run <APP_NAME>
-docker-compose run app sh -c "django-admin.py startproject app ."
+docker-compose run <APP_NAME> sh -c "django-admin.py startproject app ."
 ```
