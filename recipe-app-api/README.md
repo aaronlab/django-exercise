@@ -16,7 +16,7 @@ Make [`docker-compose.yml`](docker-compose.yml)
 docker-compose build
 ```
 
-Docker + Pycharm 자동완성 해결([링크](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html#tw))
+Docker + Pycharm 자동완성 해결([링크](https://www.jetbrains.com/help/pycharm/using-docker-compose-as-a-remote-interpreter.html))
 
 ## Create Django project
 
@@ -35,3 +35,11 @@ from django.test import TestCase
 ```commandline
 docker-compose run app sh -c "python manage.py <TEST_FILE_NAME>"
 ```
+
+## Create Core App
+
+```commandline
+docker-compose run app sh -c "python manage.py startapp core"
+```
+
+no needs to have test.py + views.py in core app
