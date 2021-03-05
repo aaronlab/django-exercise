@@ -52,7 +52,7 @@ add 'core' app in `INSTALLED_APPS` of the setting file
 
 ## Postgres
 
-in docker-compose.yml
+> in `docker-compose.yml`
 
 - in the same scope level with app
 
@@ -76,3 +76,30 @@ in docker-compose.yml
         depends_on:
           - db
     ```
+
+> in `requirements.txt`
+  
+  ```text
+  psycopg2>2.7.5,<2.8.0
+  ```
+
+> in `Dockerfile`
+ 
+- before `pip install`
+
+  ```dockerfile
+  RUN apk add --update --no-cache postgresql-client
+  RUN apk add --update --no-cache --virtual .tmp-build-deps \
+    gcc libc-dev linux-headers postgresql-dev
+  ```
+  
+- after `pip install`
+
+  ```dockerfile
+  RUN apk del .tmp-build-deps
+  ```
+  
+```commandline
+docker-compose build
+```
+
