@@ -20,6 +20,7 @@ def detail(request, question_id):
 
 
 def vote(request, question_id):
+    """Vote"""
     question = get_object_or_404(Question, pk=question_id)
 
     try:
@@ -36,3 +37,10 @@ def vote(request, question_id):
         selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def results(request, question_id):
+    """Results"""
+    question = get_object_or_404(Question, pk=question_id)
+    context = {'question': question}
+    return render(request, 'polls/results.html', context)
