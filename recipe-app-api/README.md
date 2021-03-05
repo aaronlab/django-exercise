@@ -49,3 +49,30 @@ add 'core' app in `INSTALLED_APPS` of the setting file
 ## User Model
 
 **extra_fields: any args
+
+## Postgres
+
+in docker-compose.yml
+
+- in the same scope level with app
+
+    ```text
+    db:
+        image: postgres:10-alpine
+        environment:
+          - POSTGRES_DB=app
+          - POSTGRES_USER=postgres
+          - POSTGRES_PASSWORD=supersecretpassword
+    ```
+
+- in the app
+
+    ```text
+    environment:
+          - DB_HOST=db
+          - DB_NAME=app
+          - DB_USER=postgres
+          - DB_PASS=supersecretpassword
+        depends_on:
+          - db
+    ```
