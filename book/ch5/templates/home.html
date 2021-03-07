@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>Django Application</h2>
+
+    <ul>
+
+        {% for appname in app_list %}
+
+            {% with appname|add:":"|add:"index" as urlvar %}
+                <li>
+                    <a href="{% url urlvar %}">
+                        {{ appname }}
+                    </a>
+                </li>
+            {% endwith %}
+
+        {% endfor %}
+
+
+    </ul>
+
+{% endblock %}
