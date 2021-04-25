@@ -3,3 +3,4 @@
 *.log
 *.box
 *.pyc
+db.sqlite3
